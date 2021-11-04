@@ -1,0 +1,27 @@
+$warm-black: #282626;
+$warm-black2: #1D1C1C;
+$orange: #F7931A;
+$soft-orange: #ffe9d5;
+$off-white: #faf8f7;
+
+@import 'fonts';
+@import 'button';
+@import 'forms';
+
+html{
+    font-size: 16px;
+}
+
+body.chakra-ui-light{
+    background: $warm-black;
+}
+
+h1,h2,h3,h4,td,p,li,label{
+    color: $off-white;
+}
+
+@media (min-width: 1000px){
+    html{
+        font-size: 24px;
+    }
+}

@@ -1,0 +1,30 @@
+$warm-black: #282626;
+$warm-black2: #1D1C1C;
+$orange: #F7931A;
+$soft-orange: #ffe9d5;
+$off-white: #faf8f7;
+
+header{
+    .header-wrapper{
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 1em;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        .logo-container{
+            .logo{
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                .icon{
+                    color: $orange;
+                    font-size: 1rem;
+                }
+            }
+        }
+        
+    }
+}
+

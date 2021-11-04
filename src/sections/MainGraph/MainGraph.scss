@@ -1,0 +1,35 @@
+$warm-black: #282626;
+$warm-black2: #1D1C1C;
+$orange: #F7931A;
+$soft-orange: #ffe9d5;
+$off-white: #faf8f7;
+$dark-gray: #433F3F;
+$gray2: #5A5555;
+$light-gray: #BAB6B6;
+$gray: #E5E5E5;
+
+$label: normal normal 17px/20px 'Poppins', sans-serif;
+
+.tooltip-container{
+    width: 280px;
+    height: 120px;
+    font: $label;
+    background: $warm-black;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1em;
+}
+
+.legend-container{
+    margin: .4em 0 0;
+    padding: 1em 0;
+    font: $label;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 1em;
+}

@@ -1,0 +1,40 @@
+$warm-black: #282626;
+$warm-black2: #1D1C1C;
+$orange: #F7931A;
+$soft-orange: #ffe9d5;
+$off-white: #faf8f7;
+$dark-gray: #433F3F;
+$gray2: #5A5555;
+$light-gray: #BAB6B6;
+$gray: #E5E5E5;
+
+.form{
+    padding: 1em;
+    max-width: 600px;
+    margin: 0 auto;
+}
+.input-container{
+    padding: 0.3em 0;
+}
+
+.form-label.chakra-form__label{
+    margin: 0;
+    //color: $middle-purple;
+}
+
+.form-input.chakra-input{
+    margin: 0.3em 0;
+    padding: 0 0.5em;
+    width: 100%;
+    height: 2.5em;
+    border: 2px solid $off-white;
+    border-radius: 6px;
+    color: $off-white;
+    transition: border-color .3s;
+}
+
+.form-input.chakra-input:hover{
+    border-color: $orange;
+}
+
+

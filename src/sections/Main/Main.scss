@@ -1,0 +1,105 @@
+$warm-black: #282626;
+$warm-black2: #1D1C1C;
+$orange: #F7931A;
+$soft-orange: #ffe9d5;
+$off-white: #faf8f7;
+
+main{
+    .main-wrapper{
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 1em;
+        .welcome{
+            padding: 1em 0;
+        }
+        .investments{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 1em;
+            .table-container{
+                padding: 1em;
+                width: 100%;
+                background: $warm-black2;
+                border-radius: 6px;
+            }
+            .graph-container{
+                padding: 1em;
+                width: 100%;
+                height: 350px;
+                background: $warm-black2;
+                border-radius: 6px;
+            }
+        }
+        .balance{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1em 0;
+            .balance-container{               
+                padding: 8px 10px ;
+                background: $orange;
+                border-radius: 5px;
+                p{
+                    .value{
+                        font-weight: 600;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 600px){
+    main{
+        .main-wrapper{
+            .investments{
+                .graph-container{
+                    height: 450px;
+                }
+            }
+            .balance{
+                justify-content: flex-end;
+            }
+        }
+    }
+}
+
+@media (min-width: 1000px){
+    main{
+        .main-wrapper{
+            max-width: 1200px;
+            .investments{
+                max-width: 1200px;
+                margin: 0 auto;
+                flex-direction: row;
+                .table-container{
+                    height: 500px;
+                    width: 40%;
+                   
+                }
+                .graph-container{
+                    height: 500px;
+                    width: 60%;
+                }
+            }
+        }
+    }
+}
+
+@media(min-width: 1200px){
+    main{
+        .main-wrapper{
+            .investments{
+                .table-container{
+                    width: 100%;
+                    max-width: 420px;
+                }
+                .graph-container{
+                    width: 100%;
+                }
+            }
+        }
+    }
+}

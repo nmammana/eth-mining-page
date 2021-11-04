@@ -1,0 +1,26 @@
+$warm-black: #282626;
+$warm-black2: #1D1C1C;
+$orange: #F7931A;
+$soft-orange: #ffe9d5;
+$off-white: #faf8f7;
+
+/* .alert-header.css-9fgtzh{
+    color: $middle-purple;
+} */
+
+.alert-buttons-container.css-k0waxj{
+    gap: 0.5em;
+    button{
+        background: $warm-black2;
+        box-shadow: 0px 4px 8px rgba(89, 73, 30, 0.16);
+        color: $off-white;
+    }
+    button:hover{
+        background-color: $orange;
+        color: $off-white;
+    }
+}
+.alert-content.css-hxtskf{
+    background: $warm-black;
+    color: $off-white;
+}

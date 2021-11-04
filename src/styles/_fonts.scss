@@ -1,0 +1,56 @@
+/** font-family:  **/
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+$heading1: normal bold 2rem/2.4rem 'Poppins', sans-serif;
+$heading2: normal normal 1rem/1.2rem 'Poppins', sans-serif;
+$heading3: normal bold 20px/24px 'Poppins', sans-serif;
+$body1: normal normal 1rem/1.6rem 'Poppins', sans-serif;
+$form: normal normal 0.8rem/1.6rem 'Poppins', sans-serif;
+$error-font: normal bold 1.8rem/2.2rem 'Poppins', sans-serif;
+$table-font: normal normal 0.75rem/1.2rem 'Poppins', sans-serif;
+
+ 
+$warm-black: #282626;
+$warm-black2: #1D1C1C;
+$orange: #F7931A;
+$soft-orange: #ffe9d5;
+$off-white: #faf8f7;
+$dark-gray: #433F3F;
+$gray2: #5A5555;
+$light-gray: #BAB6B6;
+$gray: #E5E5E5;
+
+.heading1{
+    font: $heading1;
+}
+.heading2{
+    font: $heading2;
+}
+.heading3{
+    font: heading3;
+}
+.body1{
+    font: $body1;
+}
+.form-font{
+    font: $form;
+}
+.error-font{
+    font: $error-font;
+}
+.title{
+    padding: 1em 0;
+    text-align: center;
+    color: $off-white;
+}
+.table-font{
+    font: $table-font;
+}
+
+input.chakra-input{
+    font: $form;
+}
+
+select.chakra-select{
+    font: $form;
+}
