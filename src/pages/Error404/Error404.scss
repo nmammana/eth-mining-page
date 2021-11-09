@@ -1,0 +1,18 @@
+.notfound-main{
+    .notfound-main__wrapper{
+        .heading-container{
+            .heading-title{
+                padding: .5em;
+            }
+        }
+        .notfound-img{
+            .img-container{
+                display: flex;
+                justify-content: center;
+                img{
+                    width: 45%;
+                }
+            }
+        }
+    }
+}

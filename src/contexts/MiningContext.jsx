@@ -8,76 +8,86 @@ import { UsersContext } from './UsersContext';
 export const MiningContext = createContext();
 
 export default function MiningContextProvider({children}) {
-    const url = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSBUYa11bUfgbkPkZr7OTBaaat2mC2jL9auRyO1Wq92DY2dIcPDFBoQYMbVmwDD_gNkbKupp6nCOJTa/pub?gid=147593243&single=true&output=csv'
-    const [miningData, setMiningData] = useState([]);
-    
+
+    //const url = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSBUYa11bUfgbkPkZr7OTBaaat2mC2jL9auRyO1Wq92DY2dIcPDFBoQYMbVmwDD_gNkbKupp6nCOJTa/pub?gid=147593243&single=true&output=csv'
+    //const url = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSBUYa11bUfgbkPkZr7OTBaaat2mC2jL9auRyO1Wq92DY2dIcPDFBoQYMbVmwDD_gNkbKupp6nCOJTa/pub?gid=960205357&single=true&output=csv';
+    const url = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSnHjhjbYheisr6FUtLkg8ncs32UQ5eGpL1TrBD0u-ZDw9PBAbxBRVbUOZyPpGfw5XYnWWCMHRYQPE-/pub?gid=978713512&single=true&output=csv';
+    const [miningData, setMiningData] = useState([]); 
     const [isLoadingData, setIsLoadingData] = useState(true);
     
     const auth = getAuth(firebaseApp); 
     const {users} = useContext(UsersContext);
     const [currentUser, setCurrentUser] = useState({
-      nombre: "",
-      email: "",
-      dni:"",
+      username: "",
+      id: "",
+      nombre:"",
     })
     const [userMiningData, setUserMiningData] = useState([]);
-    const [userLastWeekData, setUserLastWeekData] = useState("");
-    
-    const fetchMiningData = async() => {
-      onAuthStateChanged(auth, (authenticatedUser) => {
-        if (authenticatedUser) {
-          try{
-            Papa.parse(url, {
-              download: true,
-              header: true,
-              complete: function(results) {
-                var data = results.data
-                setMiningData(data);
-              }
-            });
-            users.forEach(user => {
-              if(user.email.includes(authenticatedUser.email)){
-                setCurrentUser(user);
-              }
-            })
-          }catch(error){
-            console.error('Error getting data' , error);
-          }
-        }else{
-          setCurrentUser({
-            nombre: "",
-            email: "",
-            dni:"",
-          });
-          setMiningData([])
-          setUserMiningData([])
-          setUserLastWeekData("")
-        }
-      });
-    }
-
-    const fetchCurrentUserData = () => {
-      let currentUserData = [];
-      miningData.forEach(dataBlock => {
-        if(dataBlock.dni.includes(currentUser.dni)){
-          currentUserData.push(dataBlock);
-        }
-      })
-      setUserMiningData(currentUserData);
-    }
+    const [userLastWeekData, setUserLastWeekData] = useState({
+      fecha: "",
+      username: "",
+      MH: "",
+      inversion: "",
+      saldo: "",
+    });
 
     useEffect(() => {
+      const fetchMiningData = async() => {
+        onAuthStateChanged(auth, (authenticatedUser) => {
+          if (authenticatedUser) {
+            try{
+              Papa.parse(url, {
+                download: true,
+                header: true,
+                complete: function(results) {
+                  var data = results.data
+                  setMiningData(data);
+                }
+              });
+              users.forEach(user => {
+                if(user.username.includes(authenticatedUser.email.split('@')[0])){ 
+                  setCurrentUser(user);
+                }
+              })
+            }catch(error){
+              console.error('Error getting data' , error);
+            }
+          }else{
+            setCurrentUser({
+              username: "",
+              id: "",
+              nombre:"",
+            });
+            setMiningData([])
+            setUserMiningData([])
+            setUserLastWeekData("")
+          }
+        });
+      }
+
       if(users){
         fetchMiningData();
       }
-    }, [users]);
+    }, [users, auth]);
 
     useEffect(() => {
-      if(miningData && currentUser.nombre)
+      const fetchCurrentUserData = () => {
+        let currentUserData = [];
+
+        // TODO:  ver si linkeamos usuario con su data personal via id o username
+        miningData.forEach(dataBlock => {
+          if(dataBlock.username.includes(currentUser.username) && dataBlock.saldo){
+            currentUserData.push(dataBlock);
+          }
+        })
+        setUserMiningData(currentUserData);
+      }
+      
+      if(miningData && currentUser.username)
       {
         fetchCurrentUserData();
       }
-    }, [currentUser.nombre, miningData])
+    }, [currentUser.username, miningData])
 
     useEffect(() => {
       if(userMiningData){
@@ -91,7 +101,7 @@ export default function MiningContextProvider({children}) {
     }
 
     return ( 
-      <MiningContext.Provider value={{currentUser, userMiningData, userLastWeekData, isLoadingData}}>
+      <MiningContext.Provider value={{currentUser, userMiningData, userLastWeekData}}>
           {children}
       </MiningContext.Provider>
     )

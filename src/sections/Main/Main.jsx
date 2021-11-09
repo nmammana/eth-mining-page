@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 
 import { MiningContext } from '../../contexts/MiningContext';
 
@@ -9,12 +9,20 @@ import MainTable from '../MainTable/MainTable';
 import MainGraph from '../MainGraph/MainGraph';
 
 export default function Main() {
-    const {currentUser, userMiningData, userLastWeekData, isLoadingData} = useContext(MiningContext);
+    const {currentUser, userMiningData, userLastWeekData} = useContext(MiningContext);
+    const [isLoading, setIsLoading] = useState(true);
+    const [roundedSaldo, setRoundedSaldo] = useState(0);
+
+    useEffect(() => {
+        if(currentUser.nombre && userMiningData && userLastWeekData){
+            setRoundedSaldo(Number.parseFloat(userLastWeekData.saldo).toFixed(4));
+            setIsLoading(false);
+        }
+    }, [currentUser.nombre, userMiningData, userLastWeekData])
 
     return (
         <main>
-            {/* TODO: Ajustar ese estado para que sea un isLoading */}
-            {!currentUser.nombre && <Loading/>}
+            {isLoading && <Loading/>}
             {currentUser.nombre && userMiningData && userLastWeekData &&
                 <div className="main-wrapper">
                     <section className="welcome body1">
@@ -22,7 +30,7 @@ export default function Main() {
                     </section>
                     <section className="investments">
                         <div className="table-container">
-                            <MainTable userLastWeekData={userLastWeekData}/>
+                            <MainTable userLastWeekData={userLastWeekData} roundedSaldo={roundedSaldo}/>
                         </div>
                         <div className="graph-container">
                             <MainGraph userMiningData={userMiningData}/>
@@ -30,7 +38,7 @@ export default function Main() {
                     </section>
                     <section className="balance">
                         <div className="balance-container">
-                            <p>Saldo disponible: <span className="value">{userLastWeekData.saldo}</span></p>
+                            <p>Saldo disponible [ETH]: <span className="value">{roundedSaldo}</span></p>
                         </div>
                     </section>
                 </div>

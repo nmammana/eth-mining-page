@@ -10,21 +10,21 @@ export const AuthContext = createContext();
 export default function AuthContextProvider({children}) {
     const auth = getAuth(firebaseApp);
     const [currentUser, setCurrentUser] = useState(null);
-    const [pending, setPending] = useState(true);
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect( () => {
         onAuthStateChanged(auth, (user) => {
             setCurrentUser(user);
-            setPending(false)
+            setIsLoading(false)
         });
     })
 
-    if(pending){
+    if(isLoading){
         return <Loading/>  
     }
    
     return (
-        <AuthContext.Provider value={{currentUser, pending}}>
+        <AuthContext.Provider value={{currentUser, isLoading}}>
             {children}
         </AuthContext.Provider>
     )

@@ -1,6 +1,9 @@
 import React from 'react'
 
-import Layout from '../components/Layout';
+import Layout from '../../components/Layout';
+
+import NotFoundImg from '../../assets/images/404.png';
+import './Error404.scss';
 
 export default function Error404() {
     return (
@@ -11,11 +14,11 @@ export default function Error404() {
                         <h1 className="heading1 title heading-title">Error 404: Page Not Found</h1>
                     </section>
 
-                    {/* <section className="notfound-img">
+                    <section className="notfound-img">
                         <div className="img-container">
                             <img src={NotFoundImg} alt="NotFound img"></img>
                         </div>
-                    </section> */}
+                    </section>
                 </div>
             </main>
         </Layout>

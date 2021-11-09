@@ -25,9 +25,10 @@ export default function Auth(){
         }else{
             try{
                 await setPersistence(auth, browserSessionPersistence)
-                await signInWithEmailAndPassword(auth, form.email, form.password);
+                await signInWithEmailAndPassword(auth, `${form.email}@cmscrypto.com`, form.password);
             }catch(error){
                 console.error('Login error: ', error);
+                setErrorMessage("Usuario o contraseña no válidos. Por favor vuelva a registrarse");
             }
         } 
     }
@@ -37,7 +38,8 @@ export default function Auth(){
     }
 
     const handleChange = (e) => {
-        setForm({...form, [e.target.name]:e.target.value});
+        setForm({...form, [e.target.name]: e.target.value});
+                
     }
 
     return (

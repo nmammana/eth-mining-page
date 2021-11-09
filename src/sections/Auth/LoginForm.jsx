@@ -15,7 +15,7 @@ export default function LoginForm({handleChange, login, errorMessage, form}) {
 
                     <div className="input-container">
                         <FormLabel className="form-font form-label">Correo electrónico</FormLabel>
-                        <Input  type="email" className= "form-input form-font"
+                        <Input  type="text" className= "form-input form-font"
                                 name="email" onChange={handleChange} value={form.email}></Input>
                     </div>
                     <div className="input-container">
@@ -25,7 +25,8 @@ export default function LoginForm({handleChange, login, errorMessage, form}) {
                     </div>
 
                     {errorMessage &&
-                        <p className="body1 error-message">{errorMessage}</p>}
+                        <p className="body1 error-message">{errorMessage}</p>
+                    }
 
                     
                     <div className="button-center">
