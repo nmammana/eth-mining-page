@@ -14,7 +14,7 @@ export default function LoginForm({handleChange, login, errorMessage, form}) {
                     <h1 className= "heading1 title">Ingresar</h1>
 
                     <div className="input-container">
-                        <FormLabel className="form-font form-label">Correo electrónico</FormLabel>
+                        <FormLabel className="form-font form-label">Usuario</FormLabel>
                         <Input  type="text" className= "form-input form-font"
                                 name="email" onChange={handleChange} value={form.email}></Input>
                     </div>

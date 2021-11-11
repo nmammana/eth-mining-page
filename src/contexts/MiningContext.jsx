@@ -9,8 +9,6 @@ export const MiningContext = createContext();
 
 export default function MiningContextProvider({children}) {
 
-    //const url = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSBUYa11bUfgbkPkZr7OTBaaat2mC2jL9auRyO1Wq92DY2dIcPDFBoQYMbVmwDD_gNkbKupp6nCOJTa/pub?gid=147593243&single=true&output=csv'
-    //const url = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSBUYa11bUfgbkPkZr7OTBaaat2mC2jL9auRyO1Wq92DY2dIcPDFBoQYMbVmwDD_gNkbKupp6nCOJTa/pub?gid=960205357&single=true&output=csv';
     const url = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSnHjhjbYheisr6FUtLkg8ncs32UQ5eGpL1TrBD0u-ZDw9PBAbxBRVbUOZyPpGfw5XYnWWCMHRYQPE-/pub?gid=978713512&single=true&output=csv';
     const [miningData, setMiningData] = useState([]); 
     const [isLoadingData, setIsLoadingData] = useState(true);
@@ -45,7 +43,7 @@ export default function MiningContextProvider({children}) {
                 }
               });
               users.forEach(user => {
-                if(user.username.includes(authenticatedUser.email.split('@')[0])){ 
+                if(user.username === authenticatedUser.email.split('@')[0]){ 
                   setCurrentUser(user);
                 }
               })
@@ -73,11 +71,11 @@ export default function MiningContextProvider({children}) {
     useEffect(() => {
       const fetchCurrentUserData = () => {
         let currentUserData = [];
-
-        // TODO:  ver si linkeamos usuario con su data personal via id o username
-        miningData.forEach(dataBlock => {
-          if(dataBlock.username.includes(currentUser.username) && dataBlock.saldo){
-            currentUserData.push(dataBlock);
+        miningData.forEach(dataBlock => {  
+          if((currentUser.username === dataBlock.username) && dataBlock.saldo){                        
+            const fechaParts = dataBlock.fecha.split('/');
+            var fechaObj = new Date(+fechaParts[2], fechaParts[1] - 1, +fechaParts[0]);
+            currentUserData.push({...dataBlock, dateAsInt: fechaObj.getTime(), fullDate: fechaObj});
           }
         })
         setUserMiningData(currentUserData);

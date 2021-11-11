@@ -17,8 +17,6 @@ export default function CoinsContextProvider({children}) {
         const fetchCoins = async() => {
             const res = await axios.get('https://api.ethermine.org/networkStats');
             setCoins(res.data);
-            /* console.log(res.data.data);
-            console.log(res.data.data.usd); */
             setIsLoadingCoins(false);
         }
         fetchCoins();
